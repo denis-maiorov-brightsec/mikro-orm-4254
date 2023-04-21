@@ -1,0 +1,87 @@
+{
+  "namespaces": [
+    "public"
+  ],
+  "name": "public",
+  "tables": [
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "orders",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "orders_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "orderId": {
+          "name": "orderId",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "prop": {
+          "name": "prop",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        }
+      },
+      "name": "order_summaries",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "order_summaries_pkey",
+          "columnNames": [
+            "orderId"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "order_summaries_orderId_foreign": {
+          "constraintName": "order_summaries_orderId_foreign",
+          "columnNames": [
+            "orderId"
+          ],
+          "localTableName": "public.order_summaries",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.orders",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      }
+    }
+  ]
+}
